@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marketly - Buy and Sell Locally</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#" aria-label="Marketly home">
+        <span class="brand-mark">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.5 12 4l8 6.5V20a1 1 0 0 1-1 1h-5v-6h-4v6H5a1 1 0 0 1-1-1v-9.5Z"/></svg>
+        </span>
+        <span>marketly</span>
+      </a>
+
+      <nav class="nav-actions" aria-label="Main navigation">
+        <button class="location-button" type="button" id="locationButton">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s6-5.2 6-12a6 6 0 1 0-12 0c0 6.8 6 12 6 12Zm0-9a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z"/></svg>
+          <span>Toronto, ON</span>
+        </button>
+        <button class="icon-button" type="button" aria-label="Saved listings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg>
+        </button>
+        <button class="post-button" type="button" id="postButton">
+          <span>+</span> Post ad
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Find it nearby</p>
+        <h1>Discover great deals<br>in your neighbourhood</h1>
+
+        <form class="search-box" id="searchForm">
+          <label class="search-field">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 21-4.35-4.35m2.35-5.15a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"/></svg>
+            <span class="sr-only">Search listings</span>
+            <input id="searchInput" type="search" placeholder="What are you looking for?">
+          </label>
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </section>
+
+    <section class="category-section">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Browse</p>
+          <h2>Popular categories</h2>
+        </div>
+        <button class="text-button" type="button">View all categories <span>→</span></button>
+      </div>
+
+      <div class="category-grid" id="categoryGrid">
+        <button class="category-card" type="button" data-category="Vehicles">
+          <span class="category-icon vehicles">🚗</span>
+          <span><strong>Vehicles</strong><small>24,860 ads</small></span>
+        </button>
+        <button class="category-card" type="button" data-category="Real Estate">
+          <span class="category-icon homes">⌂</span>
+          <span><strong>Real Estate</strong><small>8,210 ads</small></span>
+        </button>
+        <button class="category-card" type="button" data-category="Electronics">
+          <span class="category-icon electronics">▣</span>
+          <span><strong>Electronics</strong><small>12,430 ads</small></span>
+        </button>
+        <button class="category-card" type="button" data-category="Furniture">
+          <span class="category-icon furniture">♙</span>
+          <span><strong>Furniture</strong><small>6,850 ads</small></span>
+        </button>
+        <button class="category-card" type="button" data-category="Jobs">
+          <span class="category-icon jobs">▧</span>
+          <span><strong>Jobs</strong><small>5,320 ads</small></span>
+        </button>
+        <button class="category-card" type="button" data-category="Services">
+          <span class="category-icon services">⚒</span>
+          <span><strong>Services</strong><small>9,740 ads</small></span>
+        </button>
+      </div>
+    </section>
+
+    <section class="listings-section">
+      <div class="section-heading listing-heading">
+        <div>
+          <p class="section-kicker">Near you</p>
+          <h2 id="listingTitle">Featured listings</h2>
+        </div>
+        <button class="filter-button" type="button" id="filterButton">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10m-7 5h4"/></svg>
+          Filters
+        </button>
+      </div>
+
+      <div class="listing-grid" id="listingGrid"></div>
+    </section>
+  </main>
+
+  <dialog id="postDialog">
+    <form method="dialog" id="postForm">
+      <div class="dialog-heading">
+        <div>
+          <p class="section-kicker">Create a listing</p>
+          <h2>Post your ad</h2>
+        </div>
+        <button class="close-button" type="button" id="closeDialog" aria-label="Close">×</button>
+      </div>
+      <div class="form-grid">
+        <label>Title<input name="title" required placeholder="What are you selling?"></label>
+        <label>Price<input name="price" required type="number" min="0" placeholder="0"></label>
+        <label>Category
+          <select name="category" required>
+            <option>Vehicles</option>
+            <option>Real Estate</option>
+            <option>Electronics</option>
+            <option>Furniture</option>
+            <option>Jobs</option>
+            <option>Services</option>
+          </select>
+        </label>
+        <label>Location<input name="location" required placeholder="Toronto, ON"></label>
+        <label class="full-field">Description<textarea name="description" required rows="4" placeholder="Add details about your item"></textarea></label>
+      </div>
+      <button class="submit-ad" type="submit">Publish listing</button>
+    </form>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>
